@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Quiz - Quiz Buddy</title>
+</head>
+<body>
+    <h1>{{ quiz.title }}</h1>
+    <form action="/submit_answers/{{ quiz.id }}" method="POST">
+        {% for question in quiz.questions %}
+            <div>
+                <h3>{{ question.text }}</h3>
+                {% for option in question.options %}
+                    <label>
+                        <input type="radio" name="question_{{ question.id }}" value="{{ option.id }}">
+                        {{ option.text }}
+                    </label><br>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit">Submit Answers</button>
+    </form>
+</body>
+</html>
